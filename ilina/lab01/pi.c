@@ -3,10 +3,7 @@
 #include <math.h>
 #include <omp.h>
 
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
-
+static const double PI_REF = 3.14159265358979323846;
 static double leibniz_serial(long long n)
 {
     double sum = 0.0;
@@ -34,7 +31,7 @@ static double leibniz_omp(long long n)
 static void report(const char *label, double pi, double t, int nt)
 {
     printf("%-16s | pi=%.12f | ошибка=%.3e | время=%.4f с | потоков=%d\n",
-           label, pi, fabs(pi - M_PI), t, nt);
+           label, pi, fabs(pi - PI_REF), t, nt);
 }
 
 int main(int argc, char **argv)
